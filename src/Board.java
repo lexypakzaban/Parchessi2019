@@ -27,7 +27,7 @@ public class Board
         // ------------------------------
         // TODO: initialize all these spaces in both the main loop and the safe paths. Make sure you set the appropriate squares to safe!
 
-
+        // This is a test.
         // ------------------------------
 
     }
