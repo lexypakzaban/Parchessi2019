@@ -37,7 +37,7 @@ public class Board
         String result = "";
         // -------------------------------
         // TODO: in a loop, keep appending information to "result" so that result winds up being a string that you can print to see the whole board.
-
+        System.out.println();
 
         // suggestion: start by just printing the row numbers, a tab, and the squares themselves.
         // then you can get fancy by printing information about the various players' starting positions.
