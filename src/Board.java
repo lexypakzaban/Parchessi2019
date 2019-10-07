@@ -28,6 +28,22 @@ public class Board
         // TODO: initialize all these spaces in both the main loop and the safe paths. Make sure you set the appropriate squares to safe!
 
         // This is a test.
+
+        for(int squareNum = 0; squareNum < mainLoop.length; squareNum++) {
+            if (squareNum % 17 == 0){
+                mainLoop[squareNum].setSafe(true);
+            }
+
+            if (squareNum % 17 == 7){
+                mainLoop[squareNum].setSafe(true);
+            }
+
+            if (squareNum % 17 == 12){
+                mainLoop[squareNum].setSafe(true);
+            }
+
+
+        }
         // ------------------------------
 
     }
