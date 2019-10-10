@@ -30,18 +30,40 @@ public class Board
         // This is a test.
 
         for(int squareNum = 0; squareNum < mainLoop.length; squareNum++) {
+            //safe spaces
             if (squareNum % 17 == 0){
                 mainLoop[squareNum].setSafe(true);
+                //starting spaces
+                 if (squareNum == 0)
+                {
+                    mainLoop[squareNum].setWhoIsHere(0);
+                }
+                else if (squareNum==17)
+                {
+                    mainLoop[squareNum].setWhoIsHere(1);
+                }
+                else if (squareNum == 34)
+                {
+                    mainLoop[squareNum].setWhoIsHere(2);
+                }
+                else if (squareNum == 51)
+                {
+                    mainLoop[squareNum].setWhoIsHere(3);
+                }
             }
 
-            if (squareNum % 17 == 7){
+           else  if (squareNum % 17 == 7){
                 mainLoop[squareNum].setSafe(true);
             }
 
-            if (squareNum % 17 == 12){
+            else if (squareNum % 17 == 12){
                 mainLoop[squareNum].setSafe(true);
             }
 
+            //everything else
+            else{
+                mainLoop[squareNum].setSafe(false);
+            }
 
         }
         // ------------------------------

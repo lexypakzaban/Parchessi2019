@@ -1,6 +1,8 @@
 public class Space
 {
 
+
+
     /**
      * Each space can have be empty, or it can have one or two of a single player's pieces. (I.e., two different players
      * cannot share a space. Some spaces are considered "safe" - these show up with an asterisk next to them in our game.
@@ -28,6 +30,21 @@ public class Space
         isSafe = safe;
     }
 
+    public int getWhoIsHere() {
+        return whoIsHere;
+    }
+
+    public void setWhoIsHere(int whoIsHere) {
+        this.whoIsHere = whoIsHere;
+    }
+
+    public int getNumPieces() {
+        return numPieces;
+    }
+
+    public void setNumPieces(int numPieces) {
+        this.numPieces = numPieces;
+    }
     /**
      * generates a string describing this space. It will lead with an asterisk if it is safe, or a space if not. The
      * space itself is drawn as two characters, surrounded by "pipes" ("|") - spaces, if the space is considered empty,
