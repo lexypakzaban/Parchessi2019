@@ -37,18 +37,24 @@ public class Board
                 if (squareNum == 0)
                 {
                     mainLoop[squareNum].setWhoIsHere(0);
+
+                    //not sure if necessary w numChipsInStartingPointsPerPlayer
+                    mainLoop[squareNum].setNumPieces(4);
                 }
                 else if (squareNum==17)
                 {
                     mainLoop[squareNum].setWhoIsHere(1);
+                    mainLoop[squareNum].setNumPieces(4);
                 }
                 else if (squareNum == 34)
                 {
                     mainLoop[squareNum].setWhoIsHere(2);
+                    mainLoop[squareNum].setNumPieces(4);
                 }
                 else if (squareNum == 51)
                 {
                     mainLoop[squareNum].setWhoIsHere(3);
+                    mainLoop[squareNum].setNumPieces(4);
                 }
             }
 
@@ -58,14 +64,26 @@ public class Board
 
             else if (squareNum % 17 == 12){
                 mainLoop[squareNum].setSafe(true);
+                //this is a safePath
             }
-
             //everything else
             else{
                 mainLoop[squareNum].setSafe(false);
+                mainLoop[squareNum].setNumPieces(0);
             }
 
 
+        }
+
+        //safe paths
+        for(int safeRow = 0; safeRow < safePaths.length; safeRow++)
+        {
+
+            for(int safeRowNum = 0; safeRowNum < safePaths[safeRow].length; safeRowNum++)
+            {
+                safePaths[safeRow][safeRowNum].setSafe(true);
+
+            }
         }
         // ------------------------------
 
