@@ -34,7 +34,7 @@ public class Board
             if (squareNum % 17 == 0){
                 mainLoop[squareNum].setSafe(true);
                 //starting spaces
-                 if (squareNum == 0)
+                if (squareNum == 0)
                 {
                     mainLoop[squareNum].setWhoIsHere(0);
                 }
