@@ -95,7 +95,10 @@ public class Board
         // -------------------------------
         // TODO: in a loop, keep appending information to "result" so that result winds up being a string that you can print to see the whole board.
         System.out.println();
-
+        for (int i = 0; i<mainLoop.length; i++) {
+            System.out.print(i + "\t");
+            System.out.println(mainLoop[i]);
+        }
         // suggestion: start by just printing the row numbers, a tab, and the squares themselves.
         // then you can get fancy by printing information about the various players' starting positions.
         // then you can get fancy by adding in the safe rows to the goal for the various players.
