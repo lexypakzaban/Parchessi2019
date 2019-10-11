@@ -26,7 +26,20 @@ public class Board
             safePaths[3] = new Space[6];
         // ------------------------------
         // TODO: initialize all these spaces in both the main loop and the safe paths. Make sure you set the appropriate squares to safe!
+        for (int i = 0; i<mainLoop.length; i++)
+        {
+            Space spaceI = new Space(-1,0,false);
+            mainLoop[i] = spaceI;
+        }
 
+        for (int sp = 0; sp<safePaths.length; sp++)
+        {
+            for (int ss = 0;ss<safePaths[sp].length;ss++)
+            {
+                Space pathSP = new Space(-1, 0, false);
+                safePaths[sp][ss] = pathSP;
+            }
+        }
         // This is a test.
 
         for(int squareNum = 0; squareNum < mainLoop.length; squareNum++) {
@@ -93,13 +106,15 @@ public class Board
         String result = "";
         // -------------------------------
         // TODO: in a loop, keep appending information to "result" so that result winds up being a string that you can print to see the whole board.
-        System.out.println();
+        //System.out.println();
         for (int i = 0; i<mainLoop.length; i++) {
-            System.out.print(i + "\t");
-            System.out.println(mainLoop[i]);
+            result += i + "\t";
+            result += mainLoop[i];
+            result += "\n";
         }
         // suggestion: start by just printing the row numbers, a tab, and the squares themselves.
         // then you can get fancy by printing information about the various players' starting positions.
+
         // then you can get fancy by adding in the safe rows to the goal for the various players.
 
         // -------------------------------
