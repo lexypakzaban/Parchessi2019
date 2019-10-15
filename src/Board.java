@@ -16,6 +16,7 @@ public class Board
     private int[] numChipsInStartingPointsPerPlayer = {4,4,4,4};
     private int[] numChipsInHomePerPlayer={0,0,0,0};
 
+
     public Board()
     {
         mainLoop = new Space[68];
@@ -25,7 +26,7 @@ public class Board
             safePaths[2] = new Space[6];
             safePaths[3] = new Space[6];
         // ------------------------------
-        // TODO: initialize all these spaces in both the main loop and the safe paths. Make sure you set the appropriate squares to safe!
+        // initialize all these spaces in both the main loop and the safe paths.
         for (int i = 0; i<mainLoop.length; i++)
         {
             Space spaceI = new Space(-1,0,false);
@@ -40,8 +41,8 @@ public class Board
                 safePaths[sp][ss] = pathSP;
             }
         }
-        // This is a test.
 
+        //Make sure you set the appropriate squares to safe!
         for(int squareNum = 0; squareNum < mainLoop.length; squareNum++) {
             //safe spaces
             if (squareNum % 17 == 0){
@@ -50,24 +51,26 @@ public class Board
                  if (squareNum == 0)
                 {
                     mainLoop[squareNum].setWhoIsHere(0);
-
-                    //not sure if necessary w numChipsInStartingPointsPerPlayer
-                    mainLoop[squareNum].setNumPieces(4);
+                    mainLoop[squareNum].setStartingPosition(true);
+                    mainLoop[squareNum].setStartingPlayerNum(0);
                 }
                 else if (squareNum==17)
                 {
                     mainLoop[squareNum].setWhoIsHere(1);
-                    mainLoop[squareNum].setNumPieces(4);
+                    mainLoop[squareNum].setStartingPosition(true);
+                    mainLoop[squareNum].setStartingPlayerNum(1);
                 }
                 else if (squareNum == 34)
                 {
                     mainLoop[squareNum].setWhoIsHere(2);
-                    mainLoop[squareNum].setNumPieces(4);
+                    mainLoop[squareNum].setStartingPosition(true);
+                    mainLoop[squareNum].setStartingPlayerNum(2);
                 }
                 else if (squareNum == 51)
                 {
                     mainLoop[squareNum].setWhoIsHere(3);
-                    mainLoop[squareNum].setNumPieces(4);
+                    mainLoop[squareNum].setStartingPosition(true);
+                    mainLoop[squareNum].setStartingPlayerNum(3);
                 }
             }
 
@@ -110,6 +113,21 @@ public class Board
         for (int i = 0; i<mainLoop.length; i++) {
             result += i + "\t";
             result += mainLoop[i];
+
+
+            if (mainLoop[i].isStartingPosition())
+            {
+                int p =  mainLoop[i].getStartingPlayerNum();
+                result += "<-- Player "+p +" start. ";
+                        result+="<";
+                        //for loop that loops through num chips in home and prints playerNum that many times
+                        for (int s = 0; s< numChipsInStartingPointsPerPlayer[p] ; s++)
+                        {
+                            result+= p;
+
+                        }
+                result+=">";
+            }
             result += "\n";
         }
         // suggestion: start by just printing the row numbers, a tab, and the squares themselves.
