@@ -48,7 +48,7 @@ public class Board
             if (squareNum % 17 == 0){
                 mainLoop[squareNum].setSafe(true);
                 //starting spaces
-                 if (squareNum == 0)
+                if (squareNum == 0)
                 {
                     mainLoop[squareNum].setWhoIsHere(0);
                     mainLoop[squareNum].setStartingPosition(true);
@@ -87,6 +87,7 @@ public class Board
                 mainLoop[squareNum].setSafe(false);
                 mainLoop[squareNum].setNumPieces(0);
             }
+
 
         }
 
