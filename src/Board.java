@@ -128,7 +128,10 @@ public class Board
                         }
                 result+=">";
             }
+
+
             result += "\n";
+
         }
         // suggestion: start by just printing the row numbers, a tab, and the squares themselves.
         // then you can get fancy by printing information about the various players' starting positions.
