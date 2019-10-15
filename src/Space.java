@@ -12,10 +12,11 @@ public class Space
     private int whoIsHere; // which player, if any has pieces on this space.
     private int numPieces; // how many pieces, {0, 1, or 2} are on this space
     private boolean isSafe; // wh
+    private boolean isStartingPosition = false;
+    private int startingPlayerNum = -1;
 
-    // This is a test.
 
-    public Space(int i,int n, boolean s)
+    public Space(int i, int n, boolean s)
     {
         whoIsHere = i;
         numPieces = n;
@@ -46,6 +47,21 @@ public class Space
 
     public void setNumPieces(int numPieces) {
         this.numPieces = numPieces;
+    }
+
+    public boolean isStartingPosition() {
+        return isStartingPosition;
+    }
+
+    public void setStartingPosition(boolean startingPosition) {
+        isStartingPosition = startingPosition;
+    }
+    public int getStartingPlayerNum() {
+        return startingPlayerNum;
+    }
+
+    public void setStartingPlayerNum(int startingPlayerNum) {
+        this.startingPlayerNum = startingPlayerNum;
     }
     /**
      * generates a string describing this space. It will lead with an asterisk if it is safe, or a space if not. The
