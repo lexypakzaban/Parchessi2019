@@ -11,7 +11,9 @@ public class Space
 
     private int whoIsHere; // which player, if any has pieces on this space.
     private int numPieces; // how many pieces, {0, 1, or 2} are on this space
-    private boolean isSafe; // whether this is a safety space.
+    private boolean isSafe; // wh
+
+    // This is a test.
 
     public Space(int i,int n, boolean s)
     {
