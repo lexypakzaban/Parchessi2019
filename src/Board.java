@@ -176,4 +176,12 @@ public class Board
         return result;
     }
 
+    public void moveToANewSpace (int newSpace, int playerNum){
+        mainLoop[newSpace].setWhoIsHere(playerNum);
+    }
+
+    public void clearOldSpace (int oldSpace, int playerNum){
+        mainLoop[oldSpace].setWhoIsHere(-1); //idk if this will work
+    }
+
 }
