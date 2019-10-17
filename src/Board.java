@@ -13,6 +13,7 @@ public class Board
 
     private Space[] mainLoop;
     private Space[][] safePaths; // see note, below.
+    private Space[] homeSpace;
     private int[] numChipsInStartingPointsPerPlayer = {4,4,4,4};
     private int[] numChipsInHomePerPlayer={0,0,0,0};
 
@@ -20,7 +21,9 @@ public class Board
     public Board()
     {
         mainLoop = new Space[68];
-        safePaths = new Space[4][6];  // this makes four 6-element arrays of Spaces. Technically, this is a 2-d array we haven't covered. Just think of it as an array of arrays.
+        // this makes four 6-element arrays of Spaces. Technically, this is a 2-d array we haven't covered.
+        // Just think of it as an array of arrays.
+        safePaths = new Space[4][6];
             safePaths[0] = new Space[6];
             safePaths[1] = new Space[6];
             safePaths[2] = new Space[6];
@@ -37,9 +40,15 @@ public class Board
         {
             for (int ss = 0;ss<safePaths[sp].length;ss++)
             {
-                Space pathSP = new Space(-1, 0, false);
+                Space pathSP = new Space(-1, 0, true);
                 safePaths[sp][ss] = pathSP;
             }
+        }
+        for (int h = 0; h< homeSpace.length; h++)
+        {
+            Space spaceH = new Space(-1,0,true);
+            spaceH.setHome(true);
+            homeSpace[h] = spaceH;
         }
 
         //Make sure you set the appropriate squares to safe!
@@ -81,6 +90,22 @@ public class Board
             else if (squareNum % 17 == 12){
                 mainLoop[squareNum].setSafe(true);
                 //this is a safePath
+                if(squareNum == 12)
+                {
+                    mainLoop[squareNum].setPlayerSafePath(1);
+                }
+                if(squareNum == 29)
+                {
+                    mainLoop[squareNum].setPlayerSafePath(2);
+                }
+                if(squareNum == 46)
+                {
+                    mainLoop[squareNum].setPlayerSafePath(3);
+                }
+                if(squareNum == 63)
+                {
+                    mainLoop[squareNum].setPlayerSafePath(0);
+                }
             }
             //everything else
             else{
@@ -91,16 +116,16 @@ public class Board
 
         }
 
-        //safe paths
-        for(int safeRow = 0; safeRow < safePaths.length; safeRow++)
-        {
-
-            for(int safeRowNum = 0; safeRowNum < safePaths[safeRow].length; safeRowNum++)
-            {
-                safePaths[safeRow][safeRowNum].setSafe(true);
-
-            }
-        }
+//        //safe paths- set safe
+//        for(int safeRow = 0; safeRow < safePaths.length; safeRow++)
+//        {
+//
+//            for(int safeRowNum = 0; safeRowNum < safePaths[safeRow].length; safeRowNum++)
+//            {
+//                safePaths[safeRow][safeRowNum].setSafe(true);
+//
+//            }
+//        }
         // ------------------------------
 
     }
@@ -125,11 +150,18 @@ public class Board
                         for (int s = 0; s< numChipsInStartingPointsPerPlayer[p] ; s++)
                         {
                             result+= p;
-
                         }
                 result+=">";
             }
-
+            if (mainLoop[i].getPlayerSafePath()!=-1)
+            {
+                int ps = mainLoop[i].getPlayerSafePath();
+                for (int s = 0; s<safePaths[ps].length; s++)
+                {
+                    result += safePaths[ps][s];
+                }
+               result += homeSpace[ps];
+            }
 
             result += "\n";
 

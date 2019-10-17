@@ -1,8 +1,5 @@
 public class Space
 {
-
-
-
     /**
      * Each space can have be empty, or it can have one or two of a single player's pieces. (I.e., two different players
      * cannot share a space. Some spaces are considered "safe" - these show up with an asterisk next to them in our game.
@@ -14,6 +11,8 @@ public class Space
     private boolean isSafe; // wh
     private boolean isStartingPosition = false;
     private int startingPlayerNum = -1;
+    private int playerSafePath = -1;
+    private boolean isHome = false;
 
 
     public Space(int i, int n, boolean s)
@@ -63,6 +62,22 @@ public class Space
     public void setStartingPlayerNum(int startingPlayerNum) {
         this.startingPlayerNum = startingPlayerNum;
     }
+
+    public int getPlayerSafePath() {
+        return playerSafePath;
+    }
+
+    public void setPlayerSafePath(int playerSafePath) {
+        this.playerSafePath = playerSafePath;
+    }
+    public boolean isHome() {
+        return isHome;
+    }
+
+    public void setHome(boolean home) {
+        isHome = home;
+    }
+
     /**
      * generates a string describing this space. It will lead with an asterisk if it is safe, or a space if not. The
      * space itself is drawn as two characters, surrounded by "pipes" ("|") - spaces, if the space is considered empty,
@@ -77,6 +92,12 @@ public class Space
     public String toString()
     {
         String result;
+        //TODO: if space is Home, change appearance
+//        if (isHome)
+//            result = "<";
+//            for(int i = 0;i<2;i++)
+//                if (i<numPieces)
+//                result +=whoIsHere;
         if (isSafe())
             result ="*|";
         else
