@@ -23,6 +23,7 @@ public class Board
         mainLoop = new Space[68];
         // this makes four 6-element arrays of Spaces. Technically, this is a 2-d array we haven't covered.
         // Just think of it as an array of arrays.
+        homeSpace = new Space[4];
         safePaths = new Space[4][6];
             safePaths[0] = new Space[6];
             safePaths[1] = new Space[6];
@@ -44,6 +45,7 @@ public class Board
                 safePaths[sp][ss] = pathSP;
             }
         }
+
         for (int h = 0; h< homeSpace.length; h++)
         {
             Space spaceH = new Space(-1,0,true);
@@ -161,6 +163,7 @@ public class Board
                     result += safePaths[ps][s];
                 }
                result += homeSpace[ps];
+                result += " Safe Path for "+ps;
             }
 
             result += "\n";

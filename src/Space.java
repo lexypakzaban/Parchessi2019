@@ -93,21 +93,30 @@ public class Space
     {
         String result;
         //TODO: if space is Home, change appearance
-//        if (isHome)
-//            result = "<";
-//            for(int i = 0;i<2;i++)
-//                if (i<numPieces)
-//                result +=whoIsHere;
-        if (isSafe())
-            result ="*|";
-        else
-            result = " |";
-        for (int i = 0; i<2; i++)
-            if (i<numPieces)
-                result+= whoIsHere;
+        if (isHome) {
+            result = "<";
+            for (int i = 0; i < 4; i++) {
+                if (i < numPieces)
+                    result += whoIsHere;
+                else
+                    result += "_";
+            }
+
+            result += ">";
+            return result;
+        }
+        else {
+            if (isSafe())
+                result = "*|";
             else
-                result+= " ";
-        result+="|";
-        return result;
+                result = " |";
+            for (int i = 0; i < 2; i++)
+                if (i < numPieces)
+                    result += whoIsHere;
+                else
+                    result += " ";
+            result += "|";
+            return result;
+        }
     }
 }
