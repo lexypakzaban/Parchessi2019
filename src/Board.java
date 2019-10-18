@@ -58,6 +58,7 @@ public class Board
             //safe spaces
             if (squareNum % 17 == 0){
                 mainLoop[squareNum].setSafe(true);
+
                 //starting spaces
                 if (squareNum == 0)
                 {
@@ -89,9 +90,9 @@ public class Board
                 mainLoop[squareNum].setSafe(true);
             }
 
+            //this is a safePath
             else if (squareNum % 17 == 12){
                 mainLoop[squareNum].setSafe(true);
-                //this is a safePath
                 if(squareNum == 12)
                 {
                     mainLoop[squareNum].setPlayerSafePath(1);
@@ -115,19 +116,8 @@ public class Board
                 mainLoop[squareNum].setNumPieces(0);
             }
 
-
         }
 
-//        //safe paths- set safe
-//        for(int safeRow = 0; safeRow < safePaths.length; safeRow++)
-//        {
-//
-//            for(int safeRowNum = 0; safeRowNum < safePaths[safeRow].length; safeRowNum++)
-//            {
-//                safePaths[safeRow][safeRowNum].setSafe(true);
-//
-//            }
-//        }
         // ------------------------------
 
     }
@@ -136,13 +126,14 @@ public class Board
     {
         String result = "";
         // -------------------------------
-        // TODO: in a loop, keep appending information to "result" so that result winds up being a string that you can print to see the whole board.
+        //in a loop, keep appending information to "result" so that result winds up being a string that you can print to see the whole board.
         //System.out.println();
         for (int i = 0; i<mainLoop.length; i++) {
+            // suggestion: start by just printing the row numbers, a tab, and the squares themselves.
             result += i + "\t";
             result += mainLoop[i];
 
-
+            // then you can get fancy by printing information about the various players' starting positions.
             if (mainLoop[i].isStartingPosition())
             {
                 int p =  mainLoop[i].getStartingPlayerNum();
@@ -155,6 +146,7 @@ public class Board
                         }
                 result+=">";
             }
+            // then you can get fancy by adding in the safe rows to the goal for the various players.
             if (mainLoop[i].getPlayerSafePath()!=-1)
             {
                 int ps = mainLoop[i].getPlayerSafePath();
@@ -165,17 +157,14 @@ public class Board
                result += homeSpace[ps];
                 result += " Safe Path for "+ps;
             }
+            if(i%17==11)
+            {
+                result += "  -5   -4   -3   -2   -1   0   Home";
+            }
 
             result += "\n";
-
         }
-        // suggestion: start by just printing the row numbers, a tab, and the squares themselves.
-        // then you can get fancy by printing information about the various players' starting positions.
-
-        // then you can get fancy by adding in the safe rows to the goal for the various players.
-
         // -------------------------------
-
         return result;
     }
 
