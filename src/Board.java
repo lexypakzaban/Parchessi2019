@@ -194,14 +194,17 @@ public class Board
         }
     }
     public boolean isGameOver (int playerNum){
-        if (numChipsInHomePerPlayer.length == 4){
-            System.out.println("Player " + playerNum + " wins!");
-            return true;
-        }
+        for (int i = 0; i < numChipsInHomePerPlayer.length; i ++){
+            if (numChipsInHomePerPlayer[i] == 4){
+                System.out.println("Player " + playerNum + " wins!");
+                return true;
+            }
 
-        else {
-            return false;
+            else {
+                return false;
+            }
         }
+        return false;
     }
 
 }

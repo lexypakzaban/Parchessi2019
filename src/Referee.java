@@ -84,7 +84,7 @@ public class Referee
                         //clears old space (make sure that piece isn't on its old space)
                         myBoard.clearOldSpace(currentSpace, playerNum);
 
-                        System.out.println("Ok. The piece on " + currentSpace + " has moved to ");
+                        System.out.println("Ok. The piece on " + currentSpace + " has moved to " + newSpace);
 
                         //checks to see if all the pieces per player are in Home
                         if (myBoard.isGameOver(playerNum) == true){
