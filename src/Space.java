@@ -6,7 +6,7 @@ public class Space
      * They correspond to the spaces with circles on them and the home rows on the original board game.
      */
 
-    private int whoIsHere; // which player, if any has pieces on this space.
+    private int[] whoIsHere; // which player, if any has pieces on this space.
     private int numPieces; // how many pieces, {0, 1, or 2} are on this space
     private boolean isSafe; // wh
     private boolean isStartingPosition = false;
@@ -15,9 +15,12 @@ public class Space
     private boolean isHome = false;
 
 
-    public Space(int i, int n, boolean s)
+    public Space(int i, int t, int n, boolean s)
     {
-        whoIsHere = i;
+        //idk if whoIsHere would reset every time we call space now, aka make a new space
+        whoIsHere = new int[2];
+        whoIsHere[0] = i;
+        whoIsHere[1] = t;
         numPieces = n;
         isSafe = s;
     }
@@ -32,12 +35,12 @@ public class Space
         isSafe = safe;
     }
 
-    public int getWhoIsHere() {
-        return whoIsHere;
+    public int getWhoIsHere(int i) {
+        return whoIsHere[i];
     }
 
-    public void setWhoIsHere(int whoIsHere) {
-        this.whoIsHere = whoIsHere;
+    public void setWhoIsHere(int whoIsHere,int i) {
+        this.whoIsHere[i] = whoIsHere;
     }
 
     public int getNumPieces() {
