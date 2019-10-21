@@ -11,6 +11,7 @@ public class Referee
     }
 
     public void play() {
+        //general TODO: kick player back to home if another player lands on space and not safe space
         boolean rolling = true;
         boolean gameIsPlaying = true;
         int dieA = 0;
@@ -46,6 +47,7 @@ public class Referee
                         int currentSpace = keyboardReader.nextInt();
                         //TODO: check to see if that piece is in a safe path
 
+                        //TODO: check if current space is actually a space that one of the player's chips is on
                         //moves that piece
                         int newSpace = currentSpace + dieA;
                         myBoard.moveToANewSpace(newSpace, playerNum);
