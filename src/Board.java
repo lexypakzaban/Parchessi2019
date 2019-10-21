@@ -183,4 +183,15 @@ public class Board
         mainLoop[oldSpace].setNumPieces(0);
     }
 
+    public boolean isGameOver (int playerNum){
+        if (numChipsInHomePerPlayer.length == 4){
+            System.out.println("Player " + playerNum + " wins!");
+            return true;
+        }
+
+        else {
+            return false;
+        }
+    }
+
 }

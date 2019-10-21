@@ -27,8 +27,8 @@ public class Referee
                 while (rolling) {
                     //rolls die and asks user which they want to move
 
-                    dieA = (int) (Math.random() * 7);
-                    dieB = (int) (Math.random() * 7);
+                    dieA = (int) (Math.random() * 6) + 1;
+                    dieB = (int) (Math.random() * 6) + 1;
 
                     System.out.println("You've rolled:");
                     System.out.println("Die A: " + dieA);
@@ -57,6 +57,11 @@ public class Referee
 
                         System.out.println("Ok. The piece on " + currentSpace + " has moved to " + newSpace);
 
+                        //checks to see if all the pieces per player are in Home
+                        if (myBoard.isGameOver(playerNum) == true){
+                            gameIsPlaying = false;
+                        }
+
                         rolling = true;
                     }
 
@@ -73,6 +78,12 @@ public class Referee
                         myBoard.clearOldSpace(currentSpace, playerNum);
 
                         System.out.println("Ok. The piece on " + currentSpace + " has moved to ");
+
+                        //checks to see if all the pieces per player are in Home
+                        if (myBoard.isGameOver(playerNum) == true){
+                            gameIsPlaying = false;
+                        }
+
                         rolling = true;
 
                     }
