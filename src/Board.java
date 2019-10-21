@@ -169,11 +169,18 @@ public class Board
     }
 
     public void moveToANewSpace (int newSpace, int playerNum){
+        if (numChipsInStartingPointsPerPlayer[playerNum]==4)
+        {
+            numChipsInStartingPointsPerPlayer[playerNum]=numChipsInStartingPointsPerPlayer[playerNum]-1;
+        }
         mainLoop[newSpace].setWhoIsHere(playerNum);
+        mainLoop[newSpace].setNumPieces(1);
+
     }
 
     public void clearOldSpace (int oldSpace, int playerNum){
         mainLoop[oldSpace].setWhoIsHere(-1); //idk if this will work
+        mainLoop[oldSpace].setNumPieces(0);
     }
 
     public boolean isGameOver (int playerNum){

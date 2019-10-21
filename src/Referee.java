@@ -87,7 +87,7 @@ public class Referee
                     }
 
                 }
-
+                System.out.println(myBoard);
             }
         }
     }
