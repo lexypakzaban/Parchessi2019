@@ -76,6 +76,12 @@ public class Referee
                         myBoard.clearOldSpace(currentSpace, playerNum);
 
                         System.out.println("Ok. The piece on " + currentSpace + " has moved to ");
+
+                        //checks to see if all the pieces per player are in Home
+                        if (myBoard.isGameOver(playerNum) == true){
+                            gameIsPlaying = false;
+                        }
+
                         rolling = true;
 
                     }
