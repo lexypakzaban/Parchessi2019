@@ -182,7 +182,17 @@ public class Board
         mainLoop[oldSpace].setWhoIsHere(-1); //idk if this will work
         mainLoop[oldSpace].setNumPieces(0);
     }
-
+    public boolean checkIfSafe (int space)
+    {
+        if(mainLoop[space].isSafe())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     public boolean isGameOver (int playerNum){
         if (numChipsInHomePerPlayer.length == 4){
             System.out.println("Player " + playerNum + " wins!");
