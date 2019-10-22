@@ -54,9 +54,10 @@ public class Referee
                                 myBoard.kickOtherPlayer(newSpace);
                             }
                         }
-                        if (myBoard.checkIfHomePath(newSpace,playerNum))
+                        int homePath = myBoard.checkIfSafePath(newSpace,playerNum);
+                        if (homePath!=-1)
                         {
-                            myBoard.moveToHome();
+                            myBoard.moveToSafePath(homePath,playerNum);
                         }
                         //moves that piece
                         myBoard.moveToANewSpace(newSpace, playerNum);
@@ -89,15 +90,15 @@ public class Referee
                             }
                         }
 
-                        int homePath = myBoard.checkIfHomePath(newSpace,playerNum);
+                        int homePath = myBoard.checkIfSafePath(newSpace,playerNum);
                         if (homePath!=-1)
                         {
-                            myBoard.moveToHome(homePath,playerNum);
+                            myBoard.moveToSafePath(homePath,playerNum);
                         }
 
                         //moves that piece
                         myBoard.moveToANewSpace(newSpace, playerNum);
-
+                        //TODO: add in checkifHome
                         //clears old space (make sure that piece isn't on its old space)
                         myBoard.clearOldSpace(currentSpace, playerNum);
 
