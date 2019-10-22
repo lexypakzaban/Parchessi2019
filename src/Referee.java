@@ -50,6 +50,7 @@ public class Referee
                         //TODO: check if current space is actually a space that one of the player's chips is on
                         //moves that piece
                         int newSpace = currentSpace + dieA;
+
                         if (!myBoard.checkIfSafe(newSpace))
                         {
                             if(myBoard.checkOtherPlayer(newSpace))
@@ -76,10 +77,19 @@ public class Referee
                     else {
                         System.out.println("Which space is that piece currently on?");
                         int currentSpace = keyboardReader.nextInt();
-                        //TODO: check to see if that piece is in a safe path
+
 
                         //moves that piece
                         int newSpace = currentSpace + dieB;
+
+                        //check to see if that piece is in a safe path, and kicks if not
+                        if (!myBoard.checkIfSafe(currentSpace))
+                        {
+                            if(myBoard.checkOtherPlayer(newSpace))
+                            {
+                                myBoard.kickOtherPlayer(newSpace);
+                            }
+                        }
                         myBoard.moveToANewSpace(newSpace, playerNum);
 
                         //clears old space (make sure that piece isn't on its old space)
