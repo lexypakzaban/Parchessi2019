@@ -228,4 +228,10 @@ public class Board
         return false;
     }
 
+    public void moveToHome (int spaceNum, int player){
+        if (spaceNum >= checkIfHomePath){
+            mainLoop[spaceNum].setWhoIsHere(player);
+        }
+    }
+
 }
