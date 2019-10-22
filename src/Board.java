@@ -33,7 +33,7 @@ public class Board
         // initialize all these spaces in both the main loop and the safe paths.
         for (int i = 0; i<mainLoop.length; i++)
         {
-            Space spaceI = new Space(-1,-1,0,false);
+            Space spaceI = new Space(-1,0,false);
             mainLoop[i] = spaceI;
         }
 
@@ -41,14 +41,14 @@ public class Board
         {
             for (int ss = 0;ss<safePaths[sp].length;ss++)
             {
-                Space pathSP = new Space(-1,-1,0, true);
+                Space pathSP = new Space(-1,0, true);
                 safePaths[sp][ss] = pathSP;
             }
         }
 
         for (int h = 0; h< homeSpace.length; h++)
         {
-            Space spaceH = new Space(-1,-1,0,true);
+            Space spaceH = new Space(-1,0,true);
             spaceH.setHome(true);
             homeSpace[h] = spaceH;
         }
@@ -62,25 +62,25 @@ public class Board
                 //starting spaces
                 if (squareNum == 0)
                 {
-                    mainLoop[squareNum].setWhoIsHere(0,0);
+                    mainLoop[squareNum].setWhoIsHere(0);
                     mainLoop[squareNum].setStartingPosition(true);
                     mainLoop[squareNum].setStartingPlayerNum(0);
                 }
                 else if (squareNum==17)
                 {
-                    mainLoop[squareNum].setWhoIsHere(1,0);
+                    mainLoop[squareNum].setWhoIsHere(1);
                     mainLoop[squareNum].setStartingPosition(true);
                     mainLoop[squareNum].setStartingPlayerNum(1);
                 }
                 else if (squareNum == 34)
                 {
-                    mainLoop[squareNum].setWhoIsHere(2,0);
+                    mainLoop[squareNum].setWhoIsHere(2);
                     mainLoop[squareNum].setStartingPosition(true);
                     mainLoop[squareNum].setStartingPlayerNum(2);
                 }
                 else if (squareNum == 51)
                 {
-                    mainLoop[squareNum].setWhoIsHere(3,0);
+                    mainLoop[squareNum].setWhoIsHere(3);
                     mainLoop[squareNum].setStartingPosition(true);
                     mainLoop[squareNum].setStartingPlayerNum(3);
                 }
@@ -173,15 +173,13 @@ public class Board
         {
             numChipsInStartingPointsPerPlayer[playerNum]=numChipsInStartingPointsPerPlayer[playerNum]-1;
         }
-        //TODO: only if there isn't another player in slot0 for the space, set playerNum to slot0
-        mainLoop[newSpace].setWhoIsHere(playerNum,0);
         mainLoop[newSpace].setNumPieces(1);
 
     }
 
     public void clearOldSpace (int oldSpace, int playerNum){
         //TODO: move playerNum out of slot that they're in
-        mainLoop[oldSpace].setWhoIsHere(-1,0); //idk if this will work
+        mainLoop[oldSpace].setWhoIsHere(-1); //idk if this will work
         mainLoop[oldSpace].setNumPieces(0);
     }
 
@@ -198,7 +196,7 @@ public class Board
     }
     public boolean checkOtherPlayer(int space)
     {
-        if(mainLoop[space].getWhoIsHere(0)>-1 || mainLoop[space].getWhoIsHere(1)>-1)
+        if(mainLoop[space].getWhoIsHere()>-1 )
         {
             return true;
         }
@@ -210,6 +208,8 @@ public class Board
     {
 
         //TODO: receive the slot that the other player is in and kick them back to Home
+
+
     }
     public boolean isGameOver (int playerNum){
         for (int i = 0; i < numChipsInHomePerPlayer.length; i ++){
