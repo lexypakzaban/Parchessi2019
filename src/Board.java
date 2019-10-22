@@ -206,10 +206,12 @@ public class Board
             return false;
         }
     }
-    public void kickOtherPlayer(int space)
+    public void kickOtherPlayer(int spaceNum, int player, int otherPlayer)
     {
-
         //TODO: receive the slot that the other player is in and kick them back to Home
+        if (mainLoop[spaceNum].getWhoIsHere(spaceNum) == player && mainLoop[spaceNum].getWhoIsHere(spaceNum) == otherPlayer){
+
+        }
     }
     public boolean isGameOver (int playerNum){
         for (int i = 0; i < numChipsInHomePerPlayer.length; i ++){
