@@ -206,8 +206,12 @@ public class Board
     }
     public void kickOtherPlayer(int space)
     {
-        //TODO: receive space and kick other player back to their starting point (the array)
-        //test
+        //receive space and kick other player back to their starting point
+        int player = mainLoop[space].getWhoIsHere();
+        mainLoop[space].setWhoIsHere(-1);
+        mainLoop[space].setNumPieces(0);
+        numChipsInStartingPointsPerPlayer[player] += 1;
+
 
     }
     public boolean isGameOver (int playerNum){
