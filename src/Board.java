@@ -178,7 +178,7 @@ public class Board
     }
 
     public void clearOldSpace (int oldSpace, int playerNum){
-        //TODO: move playerNum out of slot that they're in
+
         mainLoop[oldSpace].setWhoIsHere(-1); //idk if this will work
         mainLoop[oldSpace].setNumPieces(0);
     }
@@ -206,9 +206,8 @@ public class Board
     }
     public void kickOtherPlayer(int space)
     {
-
-        //TODO: receive the slot that the other player is in and kick them back to Home
-
+        //TODO: receive space and kick other player back to their starting point (the array)
+        //test
 
     }
     public boolean isGameOver (int playerNum){
