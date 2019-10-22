@@ -173,6 +173,7 @@ public class Board
         {
             numChipsInStartingPointsPerPlayer[playerNum]=numChipsInStartingPointsPerPlayer[playerNum]-1;
         }
+        mainLoop[newSpace].setWhoIsHere(playerNum);
         mainLoop[newSpace].setNumPieces(1);
 
     }
@@ -212,7 +213,26 @@ public class Board
         mainLoop[space].setNumPieces(0);
         numChipsInStartingPointsPerPlayer[player] += 1;
 
-
+    }
+    public boolean checkifHomePath(int space, int playerNum)
+    {
+        if (playerNum==0 && space==63)
+        {
+           return true;
+        }
+        if (playerNum==1 && space==12)
+        {
+            return true;
+        }
+        if (playerNum==2 && space==29)
+        {
+            return true;
+        }
+        if (playerNum==3 && space==46)
+        {
+            return true;
+        }
+        return false;
     }
     public boolean isGameOver (int playerNum){
         for (int i = 0; i < numChipsInHomePerPlayer.length; i ++){
