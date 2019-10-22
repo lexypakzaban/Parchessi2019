@@ -54,6 +54,10 @@ public class Referee
                                 myBoard.kickOtherPlayer(newSpace);
                             }
                         }
+                        if (myBoard.checkIfHomePath(newSpace,playerNum))
+                        {
+                            myBoard.moveToHome();
+                        }
                         //moves that piece
                         myBoard.moveToANewSpace(newSpace, playerNum);
 
@@ -75,6 +79,7 @@ public class Referee
                         System.out.println("Which space is that piece currently on?");
                         int currentSpace = keyboardReader.nextInt();
                         int newSpace = currentSpace + dieB;
+
                         //check to see if that piece is in a safe path
                         if (!myBoard.checkIfSafe(newSpace))
                         {
@@ -83,6 +88,13 @@ public class Referee
                                 myBoard.kickOtherPlayer(newSpace);
                             }
                         }
+
+                        int homePath = myBoard.checkIfHomePath(newSpace,playerNum);
+                        if (homePath!=-1)
+                        {
+                            myBoard.moveToHome(homePath,playerNum);
+                        }
+
                         //moves that piece
                         myBoard.moveToANewSpace(newSpace, playerNum);
 
