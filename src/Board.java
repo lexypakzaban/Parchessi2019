@@ -214,25 +214,27 @@ public class Board
         numChipsInStartingPointsPerPlayer[player] += 1;
 
     }
-    public boolean checkifHomePath(int space, int playerNum)
+    public int checkIfHomePath(int space, int playerNum)
     {
         if (playerNum==0 && space==63)
         {
-           return true;
+           return space;
         }
-        if (playerNum==1 && space==12)
+        else if (playerNum==1 && space==12)
         {
-            return true;
+            return space;
         }
-        if (playerNum==2 && space==29)
+        else if (playerNum==2 && space==29)
         {
-            return true;
+            return space;
         }
-        if (playerNum==3 && space==46)
+        else if (playerNum==3 && space==46)
         {
-            return true;
+            return space;
         }
-        return false;
+        else{
+            return -1;
+        }
     }
     public boolean isGameOver (int playerNum){
         for (int i = 0; i < numChipsInHomePerPlayer.length; i ++){

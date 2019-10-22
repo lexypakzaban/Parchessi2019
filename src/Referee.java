@@ -54,7 +54,7 @@ public class Referee
                                 myBoard.kickOtherPlayer(newSpace);
                             }
                         }
-                        if (myBoard.checkifHomePath(newSpace,playerNum))
+                        if (myBoard.checkIfHomePath(newSpace,playerNum))
                         {
                             myBoard.moveToHome();
                         }
@@ -89,9 +89,10 @@ public class Referee
                             }
                         }
 
-                        if (myBoard.checkifHomePath(newSpace,playerNum))
+                        int homePath = myBoard.checkIfHomePath(newSpace,playerNum);
+                        if (homePath!=-1)
                         {
-                            myBoard.moveToHome();
+                            myBoard.moveToHome(homePath,playerNum);
                         }
 
                         //moves that piece
