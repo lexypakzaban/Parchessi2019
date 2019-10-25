@@ -222,17 +222,17 @@ public class Board
             }
         }
         else if (playerNum==1 ) {
-            if (space >= 12 && space <=16) {
+            if (space >= 12 && space <=17) {
                 return space-12;
             }
         }
         else if (playerNum==2 ) {
-            if (space >= 29 && space <=33) {
+            if (space >= 29 && space <=34) {
                 return space-29;
             }
         }
         else if (playerNum==3 ) {
-            if (space >= 46 && space <=50) {
+            if (space >= 46 && space <=51) {
                 return space-46;
             }
         }
@@ -255,11 +255,9 @@ public class Board
     }
 
     public void moveToSafePath (int spaceNum, int player){
-        if (spaceNum!=0)
-        {
-            safePaths[player][spaceNum].setWhoIsHere(player);
-            safePaths[player][spaceNum].setNumPieces(1);
-        }
+         safePaths[player][spaceNum-1].setWhoIsHere(player);
+         safePaths[player][spaceNum-1].setNumPieces(1);
+
 
     }
     public void checkIfHome(int oldSpace, int dieNum, int player)
