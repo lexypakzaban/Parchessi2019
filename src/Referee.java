@@ -11,7 +11,9 @@ public class Referee
     }
 
     public void play() {
-
+        //TODO: if player is already on a safe path, ask them which space on the safe path they are on
+        //TODO: (con't), then use moveToSafePath(?) to move piece within safe path
+        //TODO: it would be even better if we could check if the player actually has a piece at CurrentSpace
         boolean rolling = true;
         boolean gameIsPlaying = true;
         int dieA = 0;
