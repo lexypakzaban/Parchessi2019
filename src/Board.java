@@ -251,7 +251,7 @@ public class Board
     }
 
     public void moveToHome (int spaceNum, int player){
-        if (spaceNum >= checkIfHomePath){
+        if (spaceNum >= checkIfHomePath(spaceNum, player)){
             mainLoop[spaceNum].setWhoIsHere(player);
         }
     }
