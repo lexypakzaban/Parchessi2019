@@ -214,7 +214,7 @@ public class Board
         numChipsInStartingPointsPerPlayer[player] += 1;
 
     }
-    public int checkIfSafePath(int space, int playerNum)
+    public int checkIfStartSafePath(int space, int playerNum)
     {
         if (playerNum==0 ) {
             if (space >= 63 && space <=67) {
@@ -257,8 +257,16 @@ public class Board
     public void moveToSafePath (int spaceNum, int player){
          safePaths[player][spaceNum-1].setWhoIsHere(player);
          safePaths[player][spaceNum-1].setNumPieces(1);
+         safePaths[player][spaceNum-1].setSpecialSpace(true);
 
-
+    }
+    public boolean checkIfSpecialSpace(int spaceNum, int player)
+    {
+        if(safePaths[player][spaceNum-1].isSpecialSpace())
+        {
+            return true;
+        }
+        return false;
     }
     public void checkIfHome(int oldSpace, int dieNum, int player)
     {
@@ -272,6 +280,7 @@ public class Board
             numChipsInHomePerPlayer[player] = numChipsInHomePerPlayer[player]+1;
             safePaths[player][oldSpace].setWhoIsHere(-1);
             safePaths[player][oldSpace].setNumPieces(0);
+            safePaths[player][oldSpace].setSpecialSpace(false);
         }
     }
 

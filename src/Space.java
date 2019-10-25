@@ -13,6 +13,7 @@ public class Space
     private int startingPlayerNum = -1;
     private int playerSafePath = -1;
     private boolean isHome = false;
+    private boolean isSpecialSpace = false;
 
 
     public Space(int i, int n, boolean s)
@@ -77,6 +78,14 @@ public class Space
 
     public void setHome(boolean home) {
         isHome = home;
+    }
+
+    public boolean isSpecialSpace() {
+        return isSpecialSpace;
+    }
+
+    public void setSpecialSpace(boolean specialSpace) {
+        isSpecialSpace = specialSpace;
     }
 
     /**

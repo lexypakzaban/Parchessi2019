@@ -46,9 +46,11 @@ public class Referee
                     String move = keyboardReader.next();
 
                     if (move.equals("A")) {
-                        System.out.println("Which space is that piece currently on?");
+                            System.out.println("Which space is that piece currently on the main board?");
+
                         int currentSpace = keyboardReader.nextInt();
-                        int newSpace = currentSpace + dieA;
+                        int newSpace = currentSpace + dieB;
+
                         if (newSpace >67)
                         {
                             newSpace = newSpace-67;
@@ -65,23 +67,34 @@ public class Referee
                             }
                         }
 
-                        if (isOnSafePath)
+                        if (myBoard.checkIfStartSafePath(currentSpace,playerNum)!=-1)
                         {
-                            myBoard.checkIfHome(currentSpace,dieA,playerNum);
+                            System.out.println("Which space is the piece on in the safe path?");
+                            int safePathSpace = keyboardReader.nextInt();
+
+                            if (myBoard.checkIfSpecialSpace(safePathSpace+6,playerNum))
+                            {
+                                myBoard.checkIfHome(currentSpace,dieA,playerNum);
+                            }
                         }
 
-                        int homePath = myBoard.checkIfSafePath(newSpace,playerNum);
-                        if (homePath!=-1)
-                        {
-                            myBoard.moveToSafePath(homePath,playerNum);
-                            isOnSafePath = true;
+                        else //TODO: move piece TO safePath
+                            {
+                            int homePath = myBoard.checkIfStartSafePath(newSpace,playerNum);
+                            if (homePath!=-1)
+                            {
+                                myBoard.moveToSafePath(homePath,playerNum);
+                                isOnSafePath = true;
+
+                            }
+                            else
+                            {
+                                //moves that piece
+                                myBoard.moveToANewSpace(newSpace, playerNum);
+                            }
 
                         }
-                        else
-                        {
-                            //moves that piece
-                            myBoard.moveToANewSpace(newSpace, playerNum);
-                        }
+
 
 
                         //clears old space (make sure that piece isn't on its old space)
@@ -99,9 +112,10 @@ public class Referee
                     }
 
                     else {
-                        System.out.println("Which space is that piece currently on?");
+                        System.out.println("Which space is that piece currently on on the main board?");
                         int currentSpace = keyboardReader.nextInt();
                         int newSpace = currentSpace + dieB;
+
                         if (newSpace >67)
                         {
                             newSpace = newSpace-67;
@@ -117,23 +131,35 @@ public class Referee
                                 }
                             }
                         }
-                        if (isOnSafePath)
+
+                        if (myBoard.checkIfStartSafePath(currentSpace,playerNum)!=-1)
                         {
-                            myBoard.checkIfHome(currentSpace,dieA,playerNum);
+                            System.out.println("Which space is the piece on in the safe path?");
+                            int safePathSpace = keyboardReader.nextInt();
+
+                            if (myBoard.checkIfSpecialSpace(safePathSpace+6,playerNum))
+                            {
+                                myBoard.checkIfHome(currentSpace,dieA,playerNum);
+                            }
+
+                        }
+                        else //player is not on a safePath
+                        {
+                            int homePath = myBoard.checkIfStartSafePath(newSpace,playerNum);
+                            if (homePath!=-1)
+                            {
+                                //moves FROM mainPath TO safePath
+                                myBoard.moveToSafePath(homePath,playerNum);
+
+                            }
+                            else
+                            {
+                                //moves that piece
+                                myBoard.moveToANewSpace(newSpace, playerNum);
+                            }
                         }
 
-                        int homePath = myBoard.checkIfSafePath(newSpace,playerNum);
-                        if (homePath!=-1)
-                        {
-                            myBoard.moveToSafePath(homePath,playerNum);
-                            isOnSafePath = true;
 
-                        }
-                        else
-                        {
-                            //moves that piece
-                            myBoard.moveToANewSpace(newSpace, playerNum);
-                        }
 
 
 
