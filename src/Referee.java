@@ -66,25 +66,30 @@ public class Referee
                                 }
                             }
                         }
+                        //this might conflict if player is on start space (for example: player 0 is on space 63 exactly)
+                        //because checkIfStartSafePath also includes space 63, so this will catch them all first
 
-                        if (myBoard.checkIfStartSafePath(currentSpace,playerNum)!=-1)
+                        //1st step in checking if already on SafePath- the player said the start space for their
+                        //safePath
+                        if (myBoard.isOnStart(playerNum, currentSpace))
                         {
+                            keyboardReader.nextLine();
                             System.out.println("Which space is the piece on in the safe path?");
                             int safePathSpace = keyboardReader.nextInt();
-
+                            //player is already on the safePath
                             if (myBoard.checkIfSpecialSpace(safePathSpace+6,playerNum))
                             {
                                 myBoard.checkIfHome(currentSpace,dieA,playerNum);
                             }
                         }
 
-                        else //TODO: move piece TO safePath
-                            {
+                        //if there are moving from MainLoop to SafePath
+                        if (myBoard.checkIfStartSafePath(currentSpace,playerNum)!=-1)
+                        {
                             int homePath = myBoard.checkIfStartSafePath(newSpace,playerNum);
                             if (homePath!=-1)
                             {
                                 myBoard.moveToSafePath(homePath,playerNum);
-                                isOnSafePath = true;
 
                             }
                             else
@@ -94,8 +99,6 @@ public class Referee
                             }
 
                         }
-
-
 
                         //clears old space (make sure that piece isn't on its old space)
                         myBoard.clearOldSpace(currentSpace, playerNum);

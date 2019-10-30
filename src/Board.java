@@ -240,6 +240,23 @@ public class Board
             return -1;
 
     }
+    public boolean isOnStart(int playerNum, int mainLoopSpace)
+    {
+        if (playerNum==0 && mainLoopSpace==63) {
+           return true;
+        }
+        else if (playerNum==1 && mainLoopSpace==12) {
+            return true;
+        }
+        else if (playerNum==2 && mainLoopSpace==29) {
+            return true;
+        }
+        else if (playerNum==3 && mainLoopSpace==46) {
+            return true;
+        }
+        return false;
+    }
+
     public boolean isGameOver (int playerNum){
         for (int i = 0; i < numChipsInHomePerPlayer.length; i ++){
             if (numChipsInHomePerPlayer[i] == 4){
@@ -260,8 +277,10 @@ public class Board
          safePaths[player][spaceNum-1].setSpecialSpace(true);
 
     }
+    //checks if the player is already on the safePath, thus on their 'Special Space'
     public boolean checkIfSpecialSpace(int spaceNum, int player)
     {
+
         if(safePaths[player][spaceNum-1].isSpecialSpace())
         {
             return true;
