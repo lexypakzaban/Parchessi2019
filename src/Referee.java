@@ -17,7 +17,6 @@ public class Referee
         int dieA = 0;
         int dieB = 0;
         Scanner keyboardReader = new Scanner(System.in);
-        boolean isOnSafePath = false;
 
         while (gameIsPlaying) {
 
@@ -45,11 +44,11 @@ public class Referee
 
                     if (move.equals("A")) {
                         System.out.println("Which space is that piece currently on in the main board?");
-                        //if they enter a string or not an int, redo the question.
 
                         boolean isInteger = false;
                         int currentSpace = 0;
 
+                        //if the player enters a string or anything not an int, restate the question.
                         while (isInteger == false) {
                             Scanner scanner = new Scanner(System.in);
 
@@ -105,6 +104,8 @@ public class Referee
                             //player is already on the safePath
                             if (myBoard.checkIfSpecialSpace(safePathSpace+6,playerNum))
                             {
+                                //checks if player rolls exact # of spaces to get to Home
+                                //if so, it moves the player to home
                                 myBoard.checkIfHome(currentSpace,dieA,playerNum);
                             }
                         }
@@ -145,7 +146,22 @@ public class Referee
                     else //move = "B"
                     {
                         System.out.println("Which space is that piece currently on in the main board?");
-                        int currentSpace = keyboardReader.nextInt();
+
+                        boolean isInteger = false;
+                        int currentSpace = 0;
+
+                        while (isInteger == false) {
+                            Scanner scanner = new Scanner(System.in);
+
+                            try {
+                                currentSpace = scanner.nextInt();
+                                isInteger = true;
+
+                            } catch (InputMismatchException e) {
+                                System.out.println("Enter an integer");
+                            }
+                        }
+
                         while (!myBoard.checkIfOnCurrentSpace(currentSpace,playerNum))
                         {
                             System.out.println("Your piece is not on that space! Try again.");
