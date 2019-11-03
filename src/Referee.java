@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Referee
@@ -43,10 +44,24 @@ public class Referee
                     String move = keyboardReader.next();
 
                     if (move.equals("A")) {
-                        //test 4
                         System.out.println("Which space is that piece currently on in the main board?");
-                        //TODO: if they enter a string or not an int, redo the question.
-                        int currentSpace = keyboardReader.nextInt();
+                        //if they enter a string or not an int, redo the question.
+
+                        boolean isInteger = false;
+                        int currentSpace = 0;
+
+                        while (isInteger == false) {
+                            Scanner scanner = new Scanner(System.in);
+
+                            try {
+                                currentSpace = scanner.nextInt();
+                                isInteger = true;
+
+                            } catch (InputMismatchException e) {
+                                System.out.println("Enter an integer");
+                            }
+                        }
+
 
                         //checks if the player is actually on currentSpace
                         while (!myBoard.checkIfOnCurrentSpace(currentSpace,playerNum))
