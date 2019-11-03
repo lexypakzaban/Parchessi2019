@@ -168,8 +168,8 @@ public class Board
         return result;
     }
 
-    public void moveToANewSpace (int newSpace, int playerNum){
-        if (numChipsInStartingPointsPerPlayer[playerNum]==4)
+    public void moveToANewSpace (int currentSpace, int newSpace, int playerNum){
+        if (isOnStart(playerNum,currentSpace)&& numChipsInStartingPointsPerPlayer[playerNum]>0)
         {
             numChipsInStartingPointsPerPlayer[playerNum]=numChipsInStartingPointsPerPlayer[playerNum]-1;
         }
@@ -180,7 +180,7 @@ public class Board
 
     public void clearOldSpace (int oldSpace, int playerNum){
 
-        mainLoop[oldSpace].setWhoIsHere(-1); //idk if this will work
+        mainLoop[oldSpace].setWhoIsHere(-1);
         mainLoop[oldSpace].setNumPieces(0);
     }
 
@@ -195,15 +195,10 @@ public class Board
             return false;
         }
     }
-    public boolean checkOtherPlayer(int space)
+    public int checkOtherPlayer(int space)
     {
-        if(mainLoop[space].getWhoIsHere()>-1 )
-        {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return mainLoop[space].getWhoIsHere();
+
     }
     public void kickOtherPlayer(int space)
     {
@@ -214,7 +209,7 @@ public class Board
         numChipsInStartingPointsPerPlayer[player] += 1;
 
     }
-    public int checkIfSafePath(int space, int playerNum)
+    public int checkIfMainTOSafePath(int space, int playerNum)
     {
         if (playerNum==0 ) {
             if (space >= 63 && space <=67) {
@@ -240,6 +235,40 @@ public class Board
             return -1;
 
     }
+    public boolean isOnStartOfSafePath(int playerNum, int mainLoopSpace)
+    {
+        if (playerNum==0 && mainLoopSpace==63) {
+           return true;
+        }
+        else if (playerNum==1 && mainLoopSpace==12) {
+            return true;
+        }
+        else if (playerNum==2 && mainLoopSpace==29) {
+            return true;
+        }
+        else if (playerNum==3 && mainLoopSpace==46) {
+            return true;
+        }
+        return false;
+    }
+    //returns whether the space is the starting space for that player
+    public boolean isOnStart(int playerNum, int space)
+    {
+        if (playerNum==0 && space==0) {
+            return true;
+        }
+        else if (playerNum==1 && space == 17) {
+            return true;
+        }
+        else if (playerNum==2 && space==34) {
+            return true;
+        }
+        else if (playerNum==3 && space==51) {
+            return true;
+        }
+        return false;
+    }
+
     public boolean isGameOver (int playerNum){
         for (int i = 0; i < numChipsInHomePerPlayer.length; i ++){
             if (numChipsInHomePerPlayer[i] == 4){
@@ -257,8 +286,18 @@ public class Board
     public void moveToSafePath (int spaceNum, int player){
          safePaths[player][spaceNum-1].setWhoIsHere(player);
          safePaths[player][spaceNum-1].setNumPieces(1);
+         safePaths[player][spaceNum-1].setSpecialSpace(true);
 
+    }
+    //checks if the player is already on the safePath, thus on their 'Special Space'
+    public boolean checkIfSpecialSpace(int spaceNum, int player)
+    {
 
+        if(safePaths[player][spaceNum-1].isSpecialSpace())
+        {
+            return true;
+        }
+        return false;
     }
     public void checkIfHome(int oldSpace, int dieNum, int player)
     {
@@ -272,7 +311,25 @@ public class Board
             numChipsInHomePerPlayer[player] = numChipsInHomePerPlayer[player]+1;
             safePaths[player][oldSpace].setWhoIsHere(-1);
             safePaths[player][oldSpace].setNumPieces(0);
+            safePaths[player][oldSpace].setSpecialSpace(false);
         }
+    }
+
+    public boolean checkIfOnCurrentSpace(int currentSpace, int player)
+    {
+        if (isOnStartOfSafePath(player,currentSpace))
+        {
+            return true;
+        }
+        else if (isOnStart(player,currentSpace)&& numChipsInStartingPointsPerPlayer[player]>0)
+        {
+            return true;
+        }
+        else if (mainLoop[currentSpace].getWhoIsHere()==player)
+        {
+            return true;
+        }
+        return false;
     }
 
 }
