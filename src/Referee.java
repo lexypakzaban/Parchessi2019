@@ -43,7 +43,7 @@ public class Referee
                     String move = keyboardReader.next();
 
                     if (move.equals("A")) {
-
+                        //test 4
                         System.out.println("Which space is that piece currently on in the main board?");
                         //TODO: if they enter a string or not an int, redo the question.
                         int currentSpace = keyboardReader.nextInt();
