@@ -214,27 +214,31 @@ public class Board
         numChipsInStartingPointsPerPlayer[player] += 1;
 
     }
-    public int checkIfHomePath(int space, int playerNum)
+    public int checkIfSafePath(int space, int playerNum)
     {
-        if (playerNum==0 && space==63)
-        {
-           return space;
+        if (playerNum==0 ) {
+            if (space >= 63 && space <=67) {
+                return space-63;
+            }
         }
-        else if (playerNum==1 && space==12)
-        {
-            return space;
+        else if (playerNum==1 ) {
+            if (space >= 12 && space <=17) {
+                return space-12;
+            }
         }
-        else if (playerNum==2 && space==29)
-        {
-            return space;
+        else if (playerNum==2 ) {
+            if (space >= 29 && space <=34) {
+                return space-29;
+            }
         }
-        else if (playerNum==3 && space==46)
-        {
-            return space;
+        else if (playerNum==3 ) {
+            if (space >= 46 && space <=51) {
+                return space-46;
+            }
         }
-        else{
+
             return -1;
-        }
+
     }
     public boolean isGameOver (int playerNum){
         for (int i = 0; i < numChipsInHomePerPlayer.length; i ++){
@@ -250,9 +254,24 @@ public class Board
         return false;
     }
 
-    public void moveToHome (int spaceNum, int player){
-        if (spaceNum >= checkIfHomePath(spaceNum, player)){
-            mainLoop[spaceNum].setWhoIsHere(player);
+    public void moveToSafePath (int spaceNum, int player){
+         safePaths[player][spaceNum-1].setWhoIsHere(player);
+         safePaths[player][spaceNum-1].setNumPieces(1);
+
+
+    }
+    public void checkIfHome(int oldSpace, int dieNum, int player)
+    {
+        //only if on safePath already
+
+        int winNum=  7 - oldSpace ;
+        //if dieNum == winNum, then move to HomeSpace (and remove from old-- safepath)!
+        if (dieNum==winNum)
+        {
+            homeSpace[player].setNumPieces(homeSpace[player].getNumPieces()+1) ;
+            numChipsInHomePerPlayer[player] = numChipsInHomePerPlayer[player]+1;
+            safePaths[player][oldSpace].setWhoIsHere(-1);
+            safePaths[player][oldSpace].setNumPieces(0);
         }
     }
 
